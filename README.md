@@ -1,57 +1,94 @@
-# Sample Hardhat 3 Project (`node:test` and `viem`)
+# Secure Blockchain-Based Banking Transaction System
 
-This project showcases a Hardhat 3 project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
+A Java-based banking transaction system that combines **MySQL database management** with **blockchain-based transaction integrity verification**.
 
-To learn more about Hardhat 3, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3](https://hardhat.org/hardhat3-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+The application provides common banking operations such as account management, deposits, withdrawals, fund transfers, and transaction history. For successful financial transactions, a SHA-256 hash is generated and recorded on a Solidity smart contract running on a local Hardhat blockchain. The stored hash can later be retrieved from the blockchain and compared with the MySQL transaction record.
+
+---
 
 ## Project Overview
 
-This example project includes:
+The main objective of this project is to demonstrate how a traditional Java banking application can be integrated with blockchain technology to provide an additional layer for transaction integrity verification.
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+The application uses:
 
-## Usage
+- **Java** for the application and business logic
+- **MySQL** for customer, account, and transaction data
+- **JDBC** for Java–MySQL connectivity
+- **Solidity** for the blockchain smart contract
+- **Hardhat** for the local Ethereum-compatible blockchain
+- **Web3j** for Java–blockchain communication
+- **SHA-256** for transaction hashing
+- **BCrypt** for password hashing
+- **Git/GitHub** for version control
 
-### Running Tests
+---
 
-To run all the tests in the project, execute the following command:
+## Features
 
-```shell
-npx hardhat test
-```
+### Customer Features
 
-You can also selectively run the Solidity or `node:test` tests:
+- Customer registration
+- Customer login
+- BCrypt password verification
+- Customer account viewing
+- Account ownership validation
+- Logout
 
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
-```
+### Banking Operations
 
-### Make a deployment to Sepolia
+- Deposit money
+- Withdraw money
+- Fund transfer
+- View transaction history
+- Account balance checking
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+### Blockchain Features
 
-To run the deployment to a local chain:
+- Generate SHA-256 transaction hashes
+- Record transaction references and hashes on a Solidity smart contract
+- Store blockchain transaction records on a local Hardhat network
+- Retrieve transaction records from the blockchain
+- Compare MySQL transaction hashes with blockchain hashes
+- Verify transaction integrity
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
+### Validation and Security
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+- Password hashing using BCrypt
+- Account ownership validation
+- Invalid amount validation
+- Insufficient balance validation
+- Invalid receiver validation
+- Same-account transfer prevention
+- Parameterized SQL queries using `PreparedStatement`
+- Sensitive configuration through environment variables
+- Private blockchain credentials are not stored in source code
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+---
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+## System Architecture
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+```text
+                    Java Banking Application
+                              |
+                              |
+                     Business Logic Layer
+                              |
+                 +------------+------------+
+                 |                         |
+                 v                         v
+              MySQL                  Blockchain Layer
+                 |                         |
+                 |                         v
+                 |                 Solidity Smart Contract
+                 |                         |
+                 |                         v
+                 |                  Hardhat Blockchain
+                 |                         |
+                 |                         ^
+                 |                       Web3j
+                 |                         |
+                 +------------+------------+
+                              |
+                              v
+                    Transaction Verification
