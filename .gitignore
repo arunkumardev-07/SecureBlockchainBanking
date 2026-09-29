@@ -1,0 +1,49 @@
+# Maven
+target/
+
+# Node.js
+node_modules/
+
+# Hardhat generated files
+artifacts/
+cache/
+
+# VS Code
+.vscode/
+
+# Java compiled files
+*.class
+
+# IDE files
+.idea/
+*.iml
+
+# Local libraries
+lib/
+
+# Environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# AI / local agent configuration
+.agents/
+.claude/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local AI instruction files
+AGENTS.md
+CLAUDE.md
+
+# Hardhat deployment data
+ignition/deployments/
+
+# Hardhat deployment data
+ignition/deployments/
