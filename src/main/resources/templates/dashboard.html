@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Secure Banking Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-card dashboard-card">
+
+        <!-- ==============================
+             DASHBOARD HEADER
+             ============================== -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Secure Banking
+                </h1>
+
+                <p class="subtitle">
+                    Welcome to your customer dashboard
+                </p>
+
+            </div>
+
+            <a
+                href="/logout"
+                class="logout-button"
+            >
+                Logout
+            </a>
+
+        </div>
+
+        <hr>
+
+        <!-- ==============================
+             CUSTOMER INFORMATION
+             ============================== -->
+
+        <p>
+            <strong>Customer ID:</strong>
+
+            <span th:text="${customerId}">
+                Customer ID
+            </span>
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+
+            <span th:text="${email}">
+                Email
+            </span>
+        </p>
+
+        <!-- ==============================
+             ACCOUNT CARD
+             ============================== -->
+
+        <div class="account-card">
+
+            <h2>
+                Savings Account
+            </h2>
+
+            <div class="account-row">
+
+                <span>
+                    Account Number
+                </span>
+
+                <strong
+                    th:text="${account.accountNumber}"
+                >
+                    Account Number
+                </strong>
+
+            </div>
+
+            <div class="account-row">
+
+                <span>
+                    Account Type
+                </span>
+
+                <strong
+                    th:text="${account.accountType}"
+                >
+                    Account Type
+                </strong>
+
+            </div>
+
+            <div class="account-row">
+
+                <span>
+                    Available Balance
+                </span>
+
+                <strong
+                    class="balance"
+                >
+                    ₹<span
+                        th:text="${account.balance}"
+                    >
+                        0.00
+                    </span>
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- ==============================
+             MAIN BANKING ACTIONS
+             ============================== -->
+
+        <div class="action-grid">
+
+            <a href="/deposit">
+
+                <button type="button">
+                    Deposit
+                </button>
+
+            </a>
+
+            <a href="/withdraw">
+
+                <button type="button">
+                    Withdraw
+                </button>
+
+            </a>
+
+            <a href="/transfer">
+
+                <button type="button">
+                    Transfer
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- ==============================
+             OTHER ACTIONS
+             ============================== -->
+
+        <div class="secondary-actions">
+
+            <a href="/transaction-history">
+
+                <button type="button">
+                    Transaction History
+                </button>
+
+            </a>
+
+            <a href="/blockchain-verification">
+
+                <button type="button">
+                    Blockchain Verification
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

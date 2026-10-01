@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Blockchain Verification</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <style>
+
+        .verification-card {
+            max-width: 600px;
+        }
+
+        .success-message {
+            background: #e8f7ed;
+            color: #166534;
+            border: 1px solid #86efac;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background: #fdecec;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f4f7fb;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card verification-card">
+
+            <h1>
+                Blockchain Verification
+            </h1>
+
+            <p class="subtitle">
+                Verify transaction integrity
+            </p>
+
+            <hr>
+
+            <div
+                th:if="${success}"
+                class="success-message"
+                th:text="${success}"
+            >
+            </div>
+
+            <div
+                th:if="${error}"
+                class="error-message"
+                th:text="${error}"
+            >
+            </div>
+
+            <div class="info-box">
+
+                <strong>
+                    How verification works
+                </strong>
+
+                <p>
+                    The system compares the transaction hash
+                    stored in MySQL with the transaction hash
+                    recorded on the blockchain.
+                </p>
+
+                <p>
+                    If both hashes match, the transaction
+                    integrity is verified.
+                </p>
+
+            </div>
+
+            <form
+                action="/blockchain-verification"
+                method="post"
+            >
+
+                <label for="transactionReference">
+                    Transaction Reference
+                </label>
+
+                <input
+                    type="text"
+                    id="transactionReference"
+                    name="transactionReference"
+                    placeholder="Example: DEP..."
+                    th:value="${transactionReference}"
+                    required
+                >
+
+                <button type="submit">
+                    Verify Transaction
+                </button>
+
+            </form>
+
+            <a
+                href="/dashboard"
+                class="back-button"
+            >
+                Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

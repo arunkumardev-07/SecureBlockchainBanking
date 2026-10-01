@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Transaction History</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-card dashboard-card">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Transaction History
+                </h1>
+
+                <p class="subtitle">
+                    View your recent banking activity
+                </p>
+
+            </div>
+
+            <a
+                href="/dashboard"
+                class="logout-button"
+                style="background:#2563eb;"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+        <hr>
+
+        <div
+            th:if="${#lists.isEmpty(transactions)}"
+            class="empty-message"
+        >
+
+            No transactions found.
+
+        </div>
+
+        <div
+            th:if="${!#lists.isEmpty(transactions)}"
+            class="transaction-table-container"
+        >
+
+            <table class="transaction-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>Reference</th>
+
+                    <th>From Account</th>
+
+                    <th>To Account</th>
+
+                    <th>Type</th>
+
+                    <th>Amount</th>
+
+                    <th>Status</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr
+                    th:each="transaction : ${transactions}"
+                >
+
+                    <td
+                        th:text="${transaction.reference}"
+                    >
+                        Reference
+                    </td>
+
+                    <td
+                        th:text="${transaction.sender != null ? transaction.sender : '-'}"
+                    >
+                        -
+                    </td>
+
+                    <td
+                        th:text="${transaction.receiver != null ? transaction.receiver : '-'}"
+                    >
+                        -
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="transaction-type"
+                            th:text="${transaction.type}"
+                        >
+                            TRANSFER
+                        </span>
+
+                    </td>
+
+                    <td class="transaction-amount">
+
+                        ₹<span
+                            th:text="${transaction.amount}"
+                        >
+                            0.00
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="transaction-status"
+                            th:text="${transaction.status}"
+                        >
+                            SUCCESS
+                        </span>
+
+                    </td>
+
+                    <td
+                        th:text="${transaction.createdAt}"
+                    >
+                        Date
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <a href="/dashboard">
+
+            <button type="button">
+                Back to Dashboard
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
