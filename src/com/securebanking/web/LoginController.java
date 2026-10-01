@@ -14,18 +14,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
+    // Display login page
     @GetMapping("/")
-    public String loginPage() {
+    public String loginPage(
+            @RequestParam(required = false) Boolean registered,
+            Model model) {
+
+        /*
+         * If the user has just completed registration,
+         * display a success message on the login page.
+         */
+        if (Boolean.TRUE.equals(registered)) {
+
+            model.addAttribute(
+                    "success",
+                    "Account created successfully! You can now log in."
+            );
+        }
 
         return "login";
     }
 
+    // Display login page when /login is opened directly
     @GetMapping("/login")
     public String loginPageWithLoginUrl() {
 
         return "login";
     }
 
+    // Process login
     @PostMapping("/login")
     public String login(
             @RequestParam String email,
@@ -47,8 +64,9 @@ public class LoginController {
             int customerId =
                     loginService.getLoggedInCustomerId();
 
-            // Store logged-in customer information
-            // in the browser session
+            /*
+             * Store customer information in the session.
+             */
             session.setAttribute(
                     "customerId",
                     customerId
@@ -62,6 +80,9 @@ public class LoginController {
             return "redirect:/dashboard";
         }
 
+        /*
+         * Login failed.
+         */
         model.addAttribute(
                 "error",
                 "Invalid email or password."
