@@ -370,7 +370,9 @@ public class BankingTransactionService {
             );
         }
 
-        return privateKey;
+        return privateKey.trim();
     }
 }
+
+
 
