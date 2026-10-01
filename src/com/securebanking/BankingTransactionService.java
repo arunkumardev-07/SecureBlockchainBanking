@@ -42,7 +42,7 @@ public class BankingTransactionService {
      * Do NOT upload this file containing the key to GitHub.
      */
     private static final String PRIVATE_KEY =
-            "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+        loadPrivateKey();
 
     // Hardhat default local chain ID
     private static final long CHAIN_ID = 31337L;
@@ -355,6 +355,22 @@ public class BankingTransactionService {
 
             service.close();
         }
+    }
+
+    private static String loadPrivateKey() {
+
+        String privateKey =
+                System.getenv("HARDHAT_PRIVATE_KEY");
+
+        if (privateKey == null ||
+                privateKey.isBlank()) {
+
+            throw new IllegalStateException(
+                    "HARDHAT_PRIVATE_KEY environment variable is not set."
+            );
+        }
+
+        return privateKey;
     }
 }
 

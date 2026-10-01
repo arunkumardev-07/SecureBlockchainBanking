@@ -85,21 +85,5 @@ public class CustomerDAO {
     // Test
     // ============================================
 
-    public static void main(String[] args) {
-
-        CustomerDAO customerDAO =
-                new CustomerDAO();
-
-
-        customerDAO.addCustomer(
-
-                "Test User",
-
-                "testuser@example.com",
-
-                "9876543212",
-
-                "Test@123"
-        );
-    }
+    
 }

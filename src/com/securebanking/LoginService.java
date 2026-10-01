@@ -124,45 +124,5 @@ public class LoginService {
     }
 
 
-    public static void main(String[] args) {
-
-        LoginService loginService =
-                new LoginService();
-
-
-        System.out.println(
-                "===== TEST 1: CORRECT PASSWORD ====="
-        );
-
-        loginService.login(
-                "testuser@example.com",
-                "Test@123"
-        );
-
-
-        System.out.println(
-                "\nLogged-in Customer ID: "
-                + loginService.getLoggedInCustomerId()
-        );
-
-
-        System.out.println(
-                "\n===== TEST 2: WRONG PASSWORD ====="
-        );
-
-        loginService.login(
-                "testuser@example.com",
-                "WrongPassword"
-        );
-
-
-        System.out.println(
-                "\n===== TEST 3: UNKNOWN EMAIL ====="
-        );
-
-        loginService.login(
-                "unknown@example.com",
-                "Test@123"
-        );
-    }
+    
 }
